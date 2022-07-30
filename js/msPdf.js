@@ -77,9 +77,9 @@ async function sleep(ms) {
             '<div class="ms-pdf-box">' +
             '<div class="ms-seal-list" style="display:none;">' +
             '<div class="ms-opera-box">' +
-            '<div class="ms-add-seal">添加印章</div>' +
+            '<div class="ms-add-seal" style="display:none;">添加印章</div>' +
             '<div class="ms-clear-seal" title="清空图上的印章">恢复原图</div>' +
-            '<div class="ms-delete-seal" title="删除印章列表所有印章">删除印章</div>' +
+            '<div class="ms-delete-seal" title="删除印章列表所有印章" style="display:none;">删除印章</div>' +
             '<div class="ms-download-btn-single">保存单图</div>' +
             '<div class="ms-download-btn-long">保存长图</div>' +
             '</div>' +
@@ -164,18 +164,18 @@ async function sleep(ms) {
     }
     function bindMenuRight() {
         // 绑定右键菜单事件
-        t.mainBox.find('.ms-pdf-list').on('mousedown', 'canvas', function (e) {
+        t.mainBox.find('.ms-pdf-list').on('click', 'canvas', function (e) {
             // 右键菜单
-            if (e.which == 3) {
-                var x = e.clientX;
-                var y = document.documentElement.scrollTop + e.clientY;
-                t.cvX = e.clientX - $(this).offset().left;
-                t.cvY = document.documentElement.scrollTop + e.clientY - $(this).offset().top;
-                t.mainBox.find('.ms-seal-list').show().css({ left: x, top: y });
-                t.cvNum = $(this).index();
-            } else {
-                t.mainBox.find('.ms-seal-list').hide();
-            }
+            // if (e.which == 3) {
+            var x = e.clientX;
+            var y = document.documentElement.scrollTop + e.clientY;
+            t.cvX = e.clientX - $(this).offset().left;
+            t.cvY = document.documentElement.scrollTop + e.clientY - $(this).offset().top;
+            t.mainBox.find('.ms-seal-list').show().css({ left: x, top: y });
+            t.cvNum = $(this).index();
+            // } else {
+            //     t.mainBox.find('.ms-seal-list').hide();
+            // }
         });
         t.mainBox.find('.ms-pdf-list, .ms-seal-list').on('contextmenu', function (e) {
             // 阻止默认右键事件
